@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 
+
 export default function SearchDate(props) {
     const { date, setDate } = props;
 
     let dateCopy = date;
-    let newDateCopy = dateCopy.replace(/-/g, '');
+    let newString = String(dateCopy)
     let newArray = [];
-    let array = newDateCopy.split('');
+    let array = newString.split('');
     let numberArray = array.map(n => {
         const num = +n;
         newArray.push(num);
@@ -24,23 +25,15 @@ export default function SearchDate(props) {
             <label>Must be a valid date</label> :
             '';
 
-    let lengthTernary = newArray.length > 8 ?
+    let lengthTernary = newArray.length > 10 ?
         <label>Date must be proper length</label> : '';
-    // let monthComparison = 
-    // const filteredArray = numberArray.filter(n=> typeof n !== "number");
-    // let numberCondition =  filteredArray.length;
-    // let ternary = valueConditionLength > 0 
-    // ? <label>Value must be less than 10</label> 
-    // : numberCondition !== 0 
-    // ? <label>Value must be a number</label> 
-    // : ''; 
 
 
 
     const changeHandler = (evt) => {
-        let result = evt.target.value;
-        let newDateCopy = result.replace(/-/g, '');
-        setDate(newDateCopy);
+        if (evt.target.value !== '-') {;
+        setDate(evt.target.value);
+        }
     }
     return (
         <>
@@ -54,6 +47,7 @@ export default function SearchDate(props) {
                 <div>
                     {lengthTernary}
                 </div>
+             
             </div>
         </>
     )

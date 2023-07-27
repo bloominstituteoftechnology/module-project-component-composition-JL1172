@@ -9,7 +9,8 @@ export default function Explanation(props) {
         <div id = 'container' >
             <h2 id = 'title' >{props.data.title}</h2>
             <p id ='paragraph'>{props.data.explanation}</p>
-            <SearchDate date = {date} setDate = {setDate} data = {props.data}/>
+            <SearchDate getPicture = {props.getPicture} date = {date} 
+            setDate = {setDate} data = {props.data} url = {props.url}/>
         </div>
         
         </div>

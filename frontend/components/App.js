@@ -1,70 +1,68 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Image from './Image';
 
 
 
 const imgStyle = {
-  width : '1500px',
-  height : '950px'
+  width: '1500px',
+  height: '950px'
 }
 
-
 function App() {
-  const [data,setData] = useState([]);
-  const [date,setDate] = useState('');
+  const [data, setData] = useState([]);
+  const [date, setDate] = useState('');
+
+
   let year = parseInt(date.slice(0, 4));
-  let month = parseInt(date.slice(4, 6));
-  let day = parseInt(date.slice(6, 8));
-console.log(year)
-console.log(day)
-console.log(month)
+  let month = parseInt(date.slice(5, 7));
+  let day = parseInt(date.slice(8, 10));
 
-  const url = date.length !== 8 ? "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" 
-  : `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${year}-${month}-${day}`;
 
-  const secondUrl = date.length !== 8 ? "http://localhost:9009/api/apod?api_key=DEMO_KEY" 
-  : `http://localhost:9009/api/apod?api_key=DEMO_KEY&date=${year}-${month}-${day}` ;
+  const yearTern = typeof year === 'number' ? year : '';
+  const monthTern = typeof month === 'number' ? month : '';
+  const dayTern = typeof day === 'number' ? day : '';
 
-  useEffect(() => {
-  
-       axios.get(url)
-      .then(res => {
-       setData(res.data)
-      }) 
-      .catch(err=> {
-        console.log('The first one did not work')
-         axios.get(secondUrl)
-        .then(res=> {
-          setData(res.data)
-        }) 
-        .catch(err=> {
-          console.error('This is the last error ' + err);
-        });
-      }) 
-      },[])
 
-  // useEffect(()=> {
-  //      const photoOfTheDay = document.querySelector('#photoOfTheDay');
-  //     photoOfTheDay.style.position = "absolute";
-  //     photoOfTheDay.style.left = '0'
-  //     photoOfTheDay.style.marginTop = '1.5rem'
-  //     photoOfTheDay.style.opacity = '10%'
+  const finalYear = yearTern >= 1000 && yearTern < 10000 ? yearTern : 0;
+  const finalMonth = monthTern > 0 && monthTern <= 12 ? monthTern : 0;
+  const finalDay = dayTern > 0 && dayTern < 32 ? dayTern : 0;
+  console.log(finalYear)
 
-  //   window.onload = (evt => {
-  //     photoOfTheDay.style.position = "absolute";
-  //     photoOfTheDay.style.left = "42%";
-  //     photoOfTheDay.style.opacity = '100%'
-  //     photoOfTheDay.style.transition = '1s ease-out'
-  //   });
-  // },[data])
 
+
+  let url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`
+  const secondUrl = "http://localhost:9009/api/apod?api_key=DEMO_KEY"
+
+  function getPicture(url) {
+
+    if (finalYear.toString().split('').length === 4 &&
+      finalMonth.toString().split('').length >=1 && finalMonth.toString().split('').length <=2 &&
+      finalDay.toString().split('').length >=1 && finalDay.toString().split('').length <2) {
+      url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${finalYear}-${finalMonth}-${finalDay}`;
+    }
+    useEffect(() => {
+      if (url) {
+        axios.get(url)
+          .then(res => {
+            console.log(url)
+            setData(res.data)
+          })
+          .catch(err => {
+            console.log('The first one did not work')
+          })
+      }
+    }, [date])
+  }
+
+getPicture(url)
   return (
-  <>
-  <div style = {{margin : '2rem'}}> 
-    {data && <Image date = {date} setDate = {setDate} data = {data} imgStyle = {imgStyle} />}
-  </div>
-  </>
+    <>
+      <div style={{ margin: '2rem' }}>
+        {data && <Image date={date} setDate={setDate}
+          data={data} imgStyle={imgStyle} getPicture={getPicture} url={url} />}
+      </div>
+    </>
   )
 }
 
