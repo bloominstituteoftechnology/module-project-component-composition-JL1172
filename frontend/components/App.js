@@ -16,13 +16,15 @@ function App() {
   let year = parseInt(date.slice(0, 4));
   let month = parseInt(date.slice(4, 6));
   let day = parseInt(date.slice(6, 8));
-
+console.log(year)
+console.log(day)
+console.log(month)
 
   const url = date.length !== 8 ? "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY" 
-  : `https://api.nasa.gov/planetary/apod?date=${year}-${month}-${day}`;
+  : `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${year}-${month}-${day}`;
 
   const secondUrl = date.length !== 8 ? "http://localhost:9009/api/apod?api_key=DEMO_KEY" 
-  : `http://localhost:9009/api/apod?date=${year}-${month}-${day}` ;
+  : `http://localhost:9009/api/apod?api_key=DEMO_KEY&date=${year}-${month}-${day}` ;
 
   useEffect(() => {
   
@@ -35,7 +37,6 @@ function App() {
          axios.get(secondUrl)
         .then(res=> {
           setData(res.data)
-          console.log(res.data)
         }) 
         .catch(err=> {
           console.error('This is the last error ' + err);

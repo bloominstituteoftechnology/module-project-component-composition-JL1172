@@ -20,12 +20,12 @@ export default function SearchDate(props) {
 
     let secondTernary = year > currentYear ?
         <label>Must pic a year in the past</label> :
-        month > 12  || day > 31 ? 
-        <label>Must be a valid date</label> :
-        '';
+        month > 12 || day > 31 ?
+            <label>Must be a valid date</label> :
+            '';
 
-    let lengthTernary =  newArray.length > 8  ?
-    <label>Date must be proper length</label> : '';
+    let lengthTernary = newArray.length > 8 ?
+        <label>Date must be proper length</label> : '';
     // let monthComparison = 
     // const filteredArray = numberArray.filter(n=> typeof n !== "number");
     // let numberCondition =  filteredArray.length;
@@ -38,7 +38,9 @@ export default function SearchDate(props) {
 
 
     const changeHandler = (evt) => {
-        setDate(evt.target.value);
+        let result = evt.target.value;
+        let newDateCopy = result.replace(/-/g, '');
+        setDate(newDateCopy);
     }
     return (
         <>
