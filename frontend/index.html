@@ -19,8 +19,23 @@
 
   <script>
     
-    // const photoOfTheDay = document.querySelector('#photoOfTheDay');
-    //   photoOfTheDay.style.position = "absolute";
+    const photoOfTheDay = document.querySelector('#photoOfTheDay');
+    photoOfTheDay.style.marginLeft = '-80%';
+    photoOfTheDay.style.opacity = '10%';
+    photoOfTheDay.style.transition = '1s';
+
+    window.onload = (()=> {
+      photoOfTheDay.style.marginLeft = '17%'; 
+      photoOfTheDay.style.opacity = '100%';
+      photoOfTheDay.style.transition = '1s';
+      photoOfTheDay.style.outline = '2px solid gray';
+      photoOfTheDay.style.outlineOffset = '2px'
+      photoOfTheDay.style.borderRadius = '5px'
+      
+    })
+
+  
+    //   photoOfTheDay.style.position = "fixed";
     //   photoOfTheDay.style.left = '0'
     //   photoOfTheDay.style.marginTop = '1.5rem'
     //   photoOfTheDay.style.opacity = '10%'

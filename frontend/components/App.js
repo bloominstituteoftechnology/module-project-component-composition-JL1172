@@ -29,16 +29,16 @@ function App() {
   const finalDay = dayTern > 0 && dayTern < 32 ? dayTern : 0;
   console.log(finalYear)
 
+  const API_KEY = '';
 
+  let url = API_KEY ? `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}` : "http://localhost:9009/api/apod?api_key=DEMO_KEY";
 
-  let url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`
-  const secondUrl = "http://localhost:9009/api/apod?api_key=DEMO_KEY"
 
   function getPicture(url) {
 
     if (finalYear.toString().split('').length === 4 &&
       finalMonth.toString().split('').length >=1 && finalMonth.toString().split('').length <=2 &&
-      finalDay.toString().split('').length >=1 && finalDay.toString().split('').length <2) {
+      finalDay.toString().split('').length >=1 && finalDay.toString().split('').length <=2) {
       url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${finalYear}-${finalMonth}-${finalDay}`;
     }
     useEffect(() => {
