@@ -10,7 +10,8 @@
 
 <body>
   <header>
-    <h1 id='photoOfTheDay'>NASA Photo of the Day</h1>
+    
+    <h1 id='photoOfTheDay'><img id = 'logo' src = 'https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png'>NASA Photo of the Day</h1>
   </header>
 
   <div id="root"></div>
@@ -25,13 +26,10 @@
     photoOfTheDay.style.transition = '1s';
 
     window.onload = (()=> {
-      photoOfTheDay.style.marginLeft = '17%'; 
+      photoOfTheDay.style.marginLeft = '1rem';
+      photoOfTheDay.style.textAlign = 'center';
       photoOfTheDay.style.opacity = '100%';
       photoOfTheDay.style.transition = '1s';
-      photoOfTheDay.style.outline = '2px solid gray';
-      photoOfTheDay.style.outlineOffset = '2px'
-      photoOfTheDay.style.borderRadius = '5px'
-      
     })
 
   

@@ -2,11 +2,14 @@
   font-family: 'Titillium Web';
   src: url('../fonts/TitilliumWeb-SemiBold.ttf');
 }
-
+* {
+  margin: 0;
+}
 body {
   font-family: 'Titillium Web', sans-serif;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(to right, rgb(194, 196, 197), #e0a0a0 );
 }
 
 #root {
@@ -15,8 +18,8 @@ body {
   align-items: center;
 }
 
-h1, h2 {
-  color:rgb(116, 37, 116);
+h1, h2, p,label,input {
+  color: #333333;
 }
 
 #root {
@@ -34,6 +37,7 @@ header, footer {
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  background-image: linear-gradient(to top, rgb(194, 196, 197), #cddbe7 );
 }
 
 #img {
@@ -49,11 +53,9 @@ header, footer {
   margin-left: 20%;
   margin-right: 20%;
   line-height: 3rem;
-  box-shadow: 2px 2px 2px 2px gray;
   padding: 1rem;
-  letter-spacing: .05rem;
   border-radius: 5px;
-  background-color: white;
+  background-color: inherit;
   padding-bottom: 10rem;
 }
 #paragraph::first-letter {
@@ -70,4 +72,23 @@ header, footer {
 #label {
   margin-top: 2rem;
   text-align: center;
+}
+#logo {
+  background-color: inherit;
+  width: 160px;
+  height: 100px;
+  margin: 0;
+}
+#photoOfTheDay {
+  display: flex;
+  align-items: center;
+}
+input {
+  background-color: inherit;
+  border: none;
+}
+input:focus {
+  outline: none;
+  border-bottom: 1px solid gray;
+  transition: .5s;
 }

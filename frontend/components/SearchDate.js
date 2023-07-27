@@ -5,9 +5,9 @@ export default function SearchDate(props) {
     const { date, setDate } = props;
 
     let dateCopy = date;
-    let newString = String(dateCopy)
+   
     let newArray = [];
-    let array = newString.split('');
+    let array = dateCopy.replaceAll('-','').split('');
     let numberArray = array.map(n => {
         const num = +n;
         newArray.push(num);
@@ -17,7 +17,6 @@ export default function SearchDate(props) {
     let month = newArray.join('').slice(4, 6);
     let day = newArray.join('').slice(6, 8);
     let currentYear = new Date().getFullYear();
-
 
     let secondTernary = year > currentYear ?
         <label>Must pic a year in the past</label> :
@@ -29,10 +28,9 @@ export default function SearchDate(props) {
         <label>Date must be proper length</label> : '';
 
 
-
     const changeHandler = (evt) => {
-        if (evt.target.value !== '-') {;
-        setDate(evt.target.value);
+        if (evt.target.value !== '-') {
+            setDate(evt.target.value);
         }
     }
     return (
@@ -47,7 +45,7 @@ export default function SearchDate(props) {
                 <div>
                     {lengthTernary}
                 </div>
-             
+
             </div>
         </>
     )

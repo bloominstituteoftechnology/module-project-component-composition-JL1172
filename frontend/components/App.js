@@ -5,8 +5,9 @@ import Image from './Image';
 
 
 const imgStyle = {
-  width: '1500px',
-  height: '950px'
+  width: '110%',
+
+  height: '1050px'
 }
 
 function App() {
@@ -29,16 +30,15 @@ function App() {
   const finalDay = dayTern > 0 && dayTern < 32 ? dayTern : 0;
   console.log(finalYear)
 
-  const API_KEY = '';
+  
 
   let url = API_KEY ? `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}` : "http://localhost:9009/api/apod?api_key=DEMO_KEY";
-
 
   function getPicture(url) {
 
     if (finalYear.toString().split('').length === 4 &&
-      finalMonth.toString().split('').length >=1 && finalMonth.toString().split('').length <=2 &&
-      finalDay.toString().split('').length >=1 && finalDay.toString().split('').length <=2) {
+      finalMonth.toString().split('').length >= 1 && finalMonth.toString().split('').length <= 2 &&
+      finalDay.toString().split('').length >= 1 && finalDay.toString().split('').length <= 2) {
       url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${finalYear}-${finalMonth}-${finalDay}`;
     }
     useEffect(() => {
@@ -55,7 +55,7 @@ function App() {
     }, [date])
   }
 
-getPicture(url)
+  getPicture(url)
   return (
     <>
       <div style={{ margin: '2rem' }}>
